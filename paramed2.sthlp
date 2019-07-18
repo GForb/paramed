@@ -27,6 +27,8 @@ yreg({it:string}) mreg({it:string}) [cvars({varlist}) {opt nointer:action} {opt 
 
 {phang}{opt a1(real)} - this specifies the alternative treatment (exposure) level.
 
+{phang} If {opt avar} is a binary variable {opt a1} and {opt a0} may be ommited. If {opt a1} and {opt a0} are not specified {opt a1} and {opt a0} default to the higher and lower values of {opt avar} respectively.
+
 {phang}{opt m(real)} - this specifies the level of mediator at which the controlled direct effect 
 is to be estimated.  If there is no treatment (exposure)-mediator interaction the controlled direct effect
 is the same at all levels of the mediator and so an arbitary value can be chosen.

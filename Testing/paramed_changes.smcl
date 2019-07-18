@@ -1,0 +1,354 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}N:\Paramed\Command\Paramed\Testing\paramed_changes.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}18 Jul 2019, 11:39:02
+{txt}
+{com}. use paramed_example.dta, clear // this is the example data that is downloaded when the paramed package is installed.
+{txt}
+{com}. 
+. *1. Reduced output
+. paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) // 
+
+{txt}Model for the outcome
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(5, 994)       = {res}  1337.42
+{txt}       Model {c |} {res} 217271.294         5  43454.2587   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  32296.107       994  32.4910533   {txt}R-squared       ={res}    0.8706
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8699
+{txt}       Total {c |} {res} 249567.401       999  249.817218   {txt}Root MSE        =   {res} 5.7001
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        y_cont{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}treat {c |}{col 16}{res}{space 2}-12.90945{col 28}{space 2} .5110227{col 39}{space 1}  -25.26{col 48}{space 3}0.000{col 56}{space 4}-13.91226{col 69}{space 3}-11.90664
+{txt}{space 9}m_bin {c |}{col 16}{res}{space 2} 3.292577{col 28}{space 2} .5693594{col 39}{space 1}    5.78{col 48}{space 3}0.000{col 56}{space 4} 2.175292{col 69}{space 3} 4.409861
+{txt}_treat_X_m_bin {c |}{col 16}{res}{space 2}-22.23864{col 28}{space 2} .7217306{col 39}{space 1}  -30.81{col 48}{space 3}0.000{col 56}{space 4}-23.65493{col 69}{space 3}-20.82235
+{txt}{space 10}var1 {c |}{col 16}{res}{space 2} .9897736{col 28}{space 2} .0606257{col 39}{space 1}   16.33{col 48}{space 3}0.000{col 56}{space 4} .8708045{col 69}{space 3} 1.108743
+{txt}{space 10}var2 {c |}{col 16}{res}{space 2}-1.412419{col 28}{space 2} .1084454{col 39}{space 1}  -13.02{col 48}{space 3}0.000{col 56}{space 4}-1.625228{col 69}{space 3}-1.199611
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 5.556967{col 28}{space 2} .8206041{col 39}{space 1}    6.77{col 48}{space 3}0.000{col 56}{space 4} 3.946651{col 69}{space 3} 7.167282
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+
+{txt}Model for the mediator
+
+Iteration 0:   log likelihood = {res}-693.14518
+{txt}Iteration 1:   log likelihood = {res}-506.13868
+{txt}Iteration 2:   log likelihood = {res}-489.97545
+{txt}Iteration 3:   log likelihood = {res}-489.21237
+{txt}Iteration 4:   log likelihood = {res}-489.20977
+
+{txt}Logistic regression                               Number of obs   = {res}      1000
+                                                  {txt}LR chi2({res}3{txt})      = {res}    407.87
+                                                  {txt}Prob > chi2     = {res}    0.0000
+{txt}Log likelihood = {res}-489.20977                       {txt}Pseudo R2       = {res}    0.2942
+
+{txt}{hline 13}{c TT}{hline 64}
+       m_bin {c |}      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+{hline 13}{c +}{hline 64}
+       treat {c |}  {res} .0681243   .1576183     0.43   0.666    -.2408019    .3770504
+        {txt}var1 {c |}  {res}-.0100659   .0263047    -0.38   0.702    -.0616221    .0414903
+        {txt}var2 {c |}  {res} .8696374   .0571742    15.21   0.000     .7575781    .9816968
+       {txt}_cons {c |}  {res}-4.242807   .4044849   -10.49   0.000    -5.035583   -3.450031
+{txt}{hline 13}{c BT}{hline 64}
+{res}
+
+{txt}Estimates of causal effects
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:Estimate}{space 1}{space 1}{ralign 10:Std Err}{space 1}{space 1}{ralign 6:P>|z|}{space 1}{space 1}{ralign 10:[95% Conf}{space 1}{space 1}{ralign 10:Interval]}{space 0}
+{space 0}{hline 13}{c   +}{hline 12}{hline 12}{hline 8}{hline 12}{hline 11}
+{space 0}{space 0}{ralign 12:cde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-35.148087}}}{space 1}{space 1}{ralign 10:{res:{sf: .50975379}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-36.147205}}}{space 1}{space 1}{ralign 10:{res:{sf: -34.14897}}}{space 0}
+{space 0}{space 0}{ralign 12:nde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-23.860326}}}{space 1}{space 1}{ralign 10:{res:{sf: .71321343}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-25.258225}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.462428}}}{space 0}
+{space 0}{space 0}{ralign 12:nie}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-.32263925}}}{space 1}{space 1}{ralign 10:{res:{sf: .74640509}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.666}}}{space 1}{space 1}{ralign 10:{res:{sf:-1.7855932}}}{space 1}{space 1}{ralign 10:{res:{sf: 1.1403147}}}{space 0}
+{space 0}{space 0}{ralign 12:mte}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-24.182965}}}{space 1}{space 1}{ralign 10:{res:{sf: 4.7226287}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-33.439318}}}{space 1}{space 1}{ralign 10:{res:{sf:-14.926613}}}{space 0}
+
+Note for outcome Y, treatment (exposure) A, and mediator M:
+     {it:controlled direct effect}
+          {result:cde} = E[Y(A=a, M=m) - Y(A=a*, M=m)] 
+     {it:natural direct effect}
+          {result:nde} = E[Y(A=a, M(A=a*)) - Y(A=a*, M(A=a*))]
+     {it:natural indirect effect}
+          {result:nie} = E[Y(A=a, M(A=a)) - Y(A=a, M(A=a*))]
+     {it:marginal total effect}
+          {result:mte} = E[Y(A=a) - Y(A=a*)]           
+
+Where Y(A = a, M = m) is the value Y would take if the exposure is set to a
+and the mediator is set to m. Y(A = a, M(A = a*)) is the value Y  would take
+if the exposure is set to a and the mediator takes the vaulue it would when 
+the exposure is set to a*.
+
+{com}. 
+. *2. Full output if no covariates specified
+. ***Note I have ommited a0 a1 options and command still runs***
+. paramed2 y_cont, avar(treat) mvar(m_bin)  m(1) yreg(linear) mreg(logistic)  full // full output
+{res}{txt}0 1
+
+Model for the outcome
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(3, 996)       = {res}  1446.17
+{txt}       Model {c |} {res} 202971.098         3  67657.0327   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 46596.3026       996  46.7834364   {txt}R-squared       ={res}    0.8133
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8127
+{txt}       Total {c |} {res} 249567.401       999  249.817218   {txt}Root MSE        =   {res} 6.8398
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        y_cont{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}treat {c |}{col 16}{res}{space 2}-12.41633{col 28}{space 2} .6125356{col 39}{space 1}  -20.27{col 48}{space 3}0.000{col 56}{space 4}-13.61833{col 69}{space 3}-11.21432
+{txt}{space 9}m_bin {c |}{col 16}{res}{space 2}   .09613{col 28}{space 2} .6119503{col 39}{space 1}    0.16{col 48}{space 3}0.875{col 56}{space 4} -1.10473{col 69}{space 3}  1.29699
+{txt}_treat_X_m_bin {c |}{col 16}{res}{space 2}-22.75065{col 28}{space 2} .8653903{col 39}{space 1}  -26.29{col 48}{space 3}0.000{col 56}{space 4}-24.44885{col 69}{space 3}-21.05246
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2}   9.8998{col 28}{space 2}  .437876{col 39}{space 1}   22.61{col 48}{space 3}0.000{col 56}{space 4} 9.040534{col 69}{space 3} 10.75906
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+
+{txt}Model for the mediator
+
+Iteration 0:   log likelihood = {res}-693.14518
+{txt}Iteration 1:   log likelihood = {res}-692.90316
+{txt}Iteration 2:   log likelihood = {res}-692.90316
+
+{txt}Logistic regression                               Number of obs   = {res}      1000
+                                                  {txt}LR chi2({res}1{txt})      = {res}      0.48
+                                                  {txt}Prob > chi2     = {res}    0.4866
+{txt}Log likelihood = {res}-692.90316                       {txt}Pseudo R2       = {res}    0.0003
+
+{txt}{hline 13}{c TT}{hline 64}
+       m_bin {c |}      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+{hline 13}{c +}{hline 64}
+       treat {c |}  {res}-.0880146    .126522    -0.70   0.487    -.3359931     .159964
+       {txt}_cons {c |}  {res} .0480092   .0894685     0.54   0.592    -.1273458    .2233642
+{txt}{hline 13}{c BT}{hline 64}
+{res}
+
+{txt}Estimates of causal effects
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:Estimate}{space 1}{space 1}{ralign 10:Std Err}{space 1}{space 1}{ralign 6:P>|z|}{space 1}{space 1}{ralign 10:[95% Conf}{space 1}{space 1}{ralign 10:Interval]}{space 0}
+{space 0}{hline 13}{c   +}{hline 12}{hline 12}{hline 8}{hline 12}{hline 11}
+{space 0}{space 0}{ralign 12:cde}{space 1}{c |}{space 1}{ralign 10:{res:{sf: -35.16698}}}{space 1}{space 1}{ralign 10:{res:{sf: .61131056}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-36.365149}}}{space 1}{space 1}{ralign 10:{res:{sf:-33.968812}}}{space 0}
+{space 0}{space 0}{ralign 12:pnde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-24.064661}}}{space 1}{space 1}{ralign 10:{res:{sf: .66780389}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-25.373557}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.755765}}}{space 0}
+{space 0}{space 0}{ralign 12:pnie}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-.00211486}}}{space 1}{space 1}{ralign 10:{res:{sf: .01380168}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.878}}}{space 1}{space 1}{ralign 10:{res:{sf:-.02916615}}}{space 1}{space 1}{ralign 10:{res:{sf: .02493643}}}{space 0}
+{space 0}{space 0}{ralign 12:tnde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-23.564147}}}{space 1}{space 1}{ralign 10:{res:{sf: .66783801}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-24.873109}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.255184}}}{space 0}
+{space 0}{space 0}{ralign 12:tnie}{space 1}{c |}{space 1}{ralign 10:{res:{sf: .49839954}}}{space 1}{space 1}{ralign 10:{res:{sf: .71635064}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.487}}}{space 1}{space 1}{ralign 10:{res:{sf:-.90564771}}}{space 1}{space 1}{ralign 10:{res:{sf: 1.9024468}}}{space 0}
+{space 0}{space 0}{ralign 12:te}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-23.566262}}}{space 1}{space 1}{ralign 10:{res:{sf: .66607991}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-24.871778}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.260745}}}{space 0}
+
+Note for outcome Y, treatment (exposure) A, and mediator M:
+     {it:controlled direct effect}
+          {result:cde} = E[Y(A=a, M=m) - Y(A=a*, M=m)] 
+     {it:pure natural direct effect}
+         {result:pnde} = E[Y(A=a, M(A=a*)) - Y(A=a*, M(A=a*))]
+     {it:pure natural indirect effect}
+         {result:pnie} = E[Y(A=a*, M(A=a)) - Y(A=a*, M(A=a*))]
+     {it:total natural direct effect}
+         {result:tnde} = E[Y(A=a, M(A=a) - Y(A=a*, M(A=a))]
+     {it:total natural indirect effect}
+         {result:tnie} = E[Y(A=a, M(A=a) - Y(A=a, M(A=a*))]
+     {it:total effect}
+           {result:te} = E[Y(A=a) - Y(A=a*)]           
+
+Where Y(A = a, M = m) is the value Y would take if the exposure is set to a
+and the mediator is set to m. Y(A = a, M(A = a*)) is the value Y  would take
+if the exposure is set to a and the mediator takes the vaulue it would when 
+the exposure is set to a*.
+
+{com}. 
+. *3. Full output when covariates specified
+. paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2)  m(1) yreg(linear) mreg(logistic)  full c(5, 10) // output
+{res}{txt}0 1
+
+Model for the outcome
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(5, 994)       = {res}  1337.42
+{txt}       Model {c |} {res} 217271.294         5  43454.2587   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  32296.107       994  32.4910533   {txt}R-squared       ={res}    0.8706
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8699
+{txt}       Total {c |} {res} 249567.401       999  249.817218   {txt}Root MSE        =   {res} 5.7001
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        y_cont{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}treat {c |}{col 16}{res}{space 2}-12.90945{col 28}{space 2} .5110227{col 39}{space 1}  -25.26{col 48}{space 3}0.000{col 56}{space 4}-13.91226{col 69}{space 3}-11.90664
+{txt}{space 9}m_bin {c |}{col 16}{res}{space 2} 3.292577{col 28}{space 2} .5693594{col 39}{space 1}    5.78{col 48}{space 3}0.000{col 56}{space 4} 2.175292{col 69}{space 3} 4.409861
+{txt}_treat_X_m_bin {c |}{col 16}{res}{space 2}-22.23864{col 28}{space 2} .7217306{col 39}{space 1}  -30.81{col 48}{space 3}0.000{col 56}{space 4}-23.65493{col 69}{space 3}-20.82235
+{txt}{space 10}var1 {c |}{col 16}{res}{space 2} .9897736{col 28}{space 2} .0606257{col 39}{space 1}   16.33{col 48}{space 3}0.000{col 56}{space 4} .8708045{col 69}{space 3} 1.108743
+{txt}{space 10}var2 {c |}{col 16}{res}{space 2}-1.412419{col 28}{space 2} .1084454{col 39}{space 1}  -13.02{col 48}{space 3}0.000{col 56}{space 4}-1.625228{col 69}{space 3}-1.199611
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 5.556967{col 28}{space 2} .8206041{col 39}{space 1}    6.77{col 48}{space 3}0.000{col 56}{space 4} 3.946651{col 69}{space 3} 7.167282
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+
+{txt}Model for the mediator
+
+Iteration 0:   log likelihood = {res}-693.14518
+{txt}Iteration 1:   log likelihood = {res}-506.13868
+{txt}Iteration 2:   log likelihood = {res}-489.97545
+{txt}Iteration 3:   log likelihood = {res}-489.21237
+{txt}Iteration 4:   log likelihood = {res}-489.20977
+
+{txt}Logistic regression                               Number of obs   = {res}      1000
+                                                  {txt}LR chi2({res}3{txt})      = {res}    407.87
+                                                  {txt}Prob > chi2     = {res}    0.0000
+{txt}Log likelihood = {res}-489.20977                       {txt}Pseudo R2       = {res}    0.2942
+
+{txt}{hline 13}{c TT}{hline 64}
+       m_bin {c |}      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+{hline 13}{c +}{hline 64}
+       treat {c |}  {res} .0681243   .1576183     0.43   0.666    -.2408019    .3770504
+        {txt}var1 {c |}  {res}-.0100659   .0263047    -0.38   0.702    -.0616221    .0414903
+        {txt}var2 {c |}  {res} .8696374   .0571742    15.21   0.000     .7575781    .9816968
+       {txt}_cons {c |}  {res}-4.242807   .4044849   -10.49   0.000    -5.035583   -3.450031
+{txt}{hline 13}{c BT}{hline 64}
+{res}
+
+{txt}Estimates of causal effects
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:Estimate}{space 1}{space 1}{ralign 10:Std Err}{space 1}{space 1}{ralign 6:P>|z|}{space 1}{space 1}{ralign 10:[95% Conf}{space 1}{space 1}{ralign 10:Interval]}{space 0}
+{space 0}{hline 13}{c   +}{hline 12}{hline 12}{hline 8}{hline 12}{hline 11}
+{space 0}{space 0}{ralign 12:mcde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-35.148087}}}{space 1}{space 1}{ralign 10:{res:{sf: .50975379}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-36.147205}}}{space 1}{space 1}{ralign 10:{res:{sf: -34.14897}}}{space 0}
+{space 0}{space 0}{ralign 12:mpnde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-23.860326}}}{space 1}{space 1}{ralign 10:{res:{sf: .71321343}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-25.258225}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.462428}}}{space 0}
+{space 0}{space 0}{ralign 12:mpnie}{space 1}{c |}{space 1}{ralign 10:{res:{sf: .05607046}}}{space 1}{space 1}{ralign 10:{res:{sf: .13006626}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.666}}}{space 1}{space 1}{ralign 10:{res:{sf: -.1988594}}}{space 1}{space 1}{ralign 10:{res:{sf: .31100033}}}{space 0}
+{space 0}{space 0}{ralign 12:mtnde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-24.239036}}}{space 1}{space 1}{ralign 10:{res:{sf: .71956381}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-25.649381}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.828691}}}{space 0}
+{space 0}{space 0}{ralign 12:mtnie}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-.32263925}}}{space 1}{space 1}{ralign 10:{res:{sf: .74640509}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.666}}}{space 1}{space 1}{ralign 10:{res:{sf:-1.7855932}}}{space 1}{space 1}{ralign 10:{res:{sf: 1.1403147}}}{space 0}
+{space 0}{space 0}{ralign 12:mte}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-24.182965}}}{space 1}{space 1}{ralign 10:{res:{sf: 4.7226287}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-33.439318}}}{space 1}{space 1}{ralign 10:{res:{sf:-14.926613}}}{space 0}
+{space 0}{space 0}{ralign 12:ccde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-35.148087}}}{space 1}{space 1}{ralign 10:{res:{sf: .50975379}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-36.147205}}}{space 1}{space 1}{ralign 10:{res:{sf: -34.14897}}}{space 0}
+{space 0}{space 0}{ralign 12:cpnde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-34.879229}}}{space 1}{space 1}{ralign 10:{res:{sf: .51120854}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-35.881198}}}{space 1}{space 1}{ralign 10:{res:{sf: -33.87726}}}{space 0}
+{space 0}{space 0}{ralign 12:cpnie}{space 1}{c |}{space 1}{ralign 10:{res:{sf: .00259184}}}{space 1}{space 1}{ralign 10:{res:{sf: .00601887}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.667}}}{space 1}{space 1}{ralign 10:{res:{sf:-.00920514}}}{space 1}{space 1}{ralign 10:{res:{sf: .01438881}}}{space 0}
+{space 0}{space 0}{ralign 12:ctnde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-34.896735}}}{space 1}{space 1}{ralign 10:{res:{sf: .51106353}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-35.898419}}}{space 1}{space 1}{ralign 10:{res:{sf: -33.89505}}}{space 0}
+{space 0}{space 0}{ralign 12:ctnie}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-.01491388}}}{space 1}{space 1}{ralign 10:{res:{sf: .03454039}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.666}}}{space 1}{space 1}{ralign 10:{res:{sf:-.08261304}}}{space 1}{space 1}{ralign 10:{res:{sf: .05278528}}}{space 0}
+{space 0}{space 0}{ralign 12:cte}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-34.894143}}}{space 1}{space 1}{ralign 10:{res:{sf: .53866496}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-35.949926}}}{space 1}{space 1}{ralign 10:{res:{sf:-33.838359}}}{space 0}
+
+Note for outcome Y, treatment (exposure) A, and mediator M:
+     {it:marginal conditional direct effect}
+         {result:mcde} = E[Y(A=a, M=m) - Y(A=a*, M=m)] 
+     {it:marginal pure natural direct effect}
+        {result:mpnde} = E[Y(A=a, M(A=a*)) - Y(A=a*, M(A=a*))]
+     {it:marginal pure natural indirect effect}
+        {result:mpnie} = E[Y(A=a*, M(A=a)) - Y(A=a*, M(A=a*))]
+     {it:marginal total natural direct effect}
+        {result:mtnde} = E[Y(A=a, M(A=a) - Y(A=a*, M(A=a))]
+     {it:marginal total natural indirect effect}
+        {result:mtnie} = E[Y(A=a, M(A=a) - Y(A=a, M(A=a*))]
+     {it:marginal total effect}
+          {result:mte} = E[Y(A=a) - Y(A=a*)]           
+     {it:conditional controlled direct effect}
+         {result:ccde} = E[Y(A=a, M=m) - Y(A=a*, M=m)|C=c]
+     {it:conditional pure natural direct effect}
+        {result:cpnde} = E[Y(A=a, M(A=a*)) - Y(A=a*, M(A=a*))|C=c]
+     {it:conditional pure natural indirect effect}
+        {result:cpnie} = E[Y(A=a*, M(A=a)) - Y(A=a*, M(A=a*))|C=c]
+     {it:conditional total natural direct effect}
+        {result:ctnde} = E[Y(A=a, M(A=a) - Y(A=a*, M(A=a))|C=c]
+     {it:conditional total natural indirect effect}
+        {result:ctnie} = E[Y(A=a, M(A=a) - Y(A=a, M(A=a*))|C=c]
+     {it:conditional total effect}
+          {result:cte} = E[Y(A=a) - Y(A=a*)|C=c]       
+
+Where Y(A = a, M = m) is the value Y would take if the exposure is set to a
+and the mediator is set to m. Y(A = a, M(A = a*)) is the value Y  would take
+if the exposure is set to a and the mediator takes the vaulue it would when 
+the exposure is set to a*.
+
+{com}. 
+. *4. Bootstrap output
+. paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) // 
+
+{txt}Model for the outcome
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(5, 994)       = {res}  1337.42
+{txt}       Model {c |} {res} 217271.294         5  43454.2587   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  32296.107       994  32.4910533   {txt}R-squared       ={res}    0.8706
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8699
+{txt}       Total {c |} {res} 249567.401       999  249.817218   {txt}Root MSE        =   {res} 5.7001
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        y_cont{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}treat {c |}{col 16}{res}{space 2}-12.90945{col 28}{space 2} .5110227{col 39}{space 1}  -25.26{col 48}{space 3}0.000{col 56}{space 4}-13.91226{col 69}{space 3}-11.90664
+{txt}{space 9}m_bin {c |}{col 16}{res}{space 2} 3.292577{col 28}{space 2} .5693594{col 39}{space 1}    5.78{col 48}{space 3}0.000{col 56}{space 4} 2.175292{col 69}{space 3} 4.409861
+{txt}_treat_X_m_bin {c |}{col 16}{res}{space 2}-22.23864{col 28}{space 2} .7217306{col 39}{space 1}  -30.81{col 48}{space 3}0.000{col 56}{space 4}-23.65493{col 69}{space 3}-20.82235
+{txt}{space 10}var1 {c |}{col 16}{res}{space 2} .9897736{col 28}{space 2} .0606257{col 39}{space 1}   16.33{col 48}{space 3}0.000{col 56}{space 4} .8708045{col 69}{space 3} 1.108743
+{txt}{space 10}var2 {c |}{col 16}{res}{space 2}-1.412419{col 28}{space 2} .1084454{col 39}{space 1}  -13.02{col 48}{space 3}0.000{col 56}{space 4}-1.625228{col 69}{space 3}-1.199611
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 5.556967{col 28}{space 2} .8206041{col 39}{space 1}    6.77{col 48}{space 3}0.000{col 56}{space 4} 3.946651{col 69}{space 3} 7.167282
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+
+{txt}Model for the mediator
+
+Iteration 0:   log likelihood = {res}-693.14518
+{txt}Iteration 1:   log likelihood = {res}-506.13868
+{txt}Iteration 2:   log likelihood = {res}-489.97545
+{txt}Iteration 3:   log likelihood = {res}-489.21237
+{txt}Iteration 4:   log likelihood = {res}-489.20977
+
+{txt}Logistic regression                               Number of obs   = {res}      1000
+                                                  {txt}LR chi2({res}3{txt})      = {res}    407.87
+                                                  {txt}Prob > chi2     = {res}    0.0000
+{txt}Log likelihood = {res}-489.20977                       {txt}Pseudo R2       = {res}    0.2942
+
+{txt}{hline 13}{c TT}{hline 64}
+       m_bin {c |}      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+{hline 13}{c +}{hline 64}
+       treat {c |}  {res} .0681243   .1576183     0.43   0.666    -.2408019    .3770504
+        {txt}var1 {c |}  {res}-.0100659   .0263047    -0.38   0.702    -.0616221    .0414903
+        {txt}var2 {c |}  {res} .8696374   .0571742    15.21   0.000     .7575781    .9816968
+       {txt}_cons {c |}  {res}-4.242807   .4044849   -10.49   0.000    -5.035583   -3.450031
+{txt}{hline 13}{c BT}{hline 64}
+{res}
+
+{txt}Estimates of causal effects
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:Estimate}{space 1}{space 1}{ralign 10:Std Err}{space 1}{space 1}{ralign 6:P>|z|}{space 1}{space 1}{ralign 10:[95% Conf}{space 1}{space 1}{ralign 10:Interval]}{space 0}
+{space 0}{hline 13}{c   +}{hline 12}{hline 12}{hline 8}{hline 12}{hline 11}
+{space 0}{space 0}{ralign 12:cde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-35.148087}}}{space 1}{space 1}{ralign 10:{res:{sf: .50975379}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-36.147205}}}{space 1}{space 1}{ralign 10:{res:{sf: -34.14897}}}{space 0}
+{space 0}{space 0}{ralign 12:nde}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-23.860326}}}{space 1}{space 1}{ralign 10:{res:{sf: .71321343}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-25.258225}}}{space 1}{space 1}{ralign 10:{res:{sf:-22.462428}}}{space 0}
+{space 0}{space 0}{ralign 12:nie}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-.32263925}}}{space 1}{space 1}{ralign 10:{res:{sf: .74640509}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.666}}}{space 1}{space 1}{ralign 10:{res:{sf:-1.7855932}}}{space 1}{space 1}{ralign 10:{res:{sf: 1.1403147}}}{space 0}
+{space 0}{space 0}{ralign 12:mte}{space 1}{c |}{space 1}{ralign 10:{res:{sf:-24.182965}}}{space 1}{space 1}{ralign 10:{res:{sf: 4.7226287}}}{space 1}{space 1}{ralign 6:{res:{sf: 0.000}}}{space 1}{space 1}{ralign 10:{res:{sf:-33.439318}}}{space 1}{space 1}{ralign 10:{res:{sf:-14.926613}}}{space 0}
+
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 11}{hline 13}{hline 12}{hline 10}{hline 6}
+{col 14}{text}{c |}    Observed{col 38}    Bootstrap
+{res}{col 14}{text}{c |}       Coef.{col 27}       Bias{col 38}    Std. Err.{col 51}  [95% Conf. Interval]
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 11}{hline 13}{hline 12}{hline 10}{hline 6}
+{col 1}{text}         cde{col 14}{c |}{result}{space 2}-35.148087{col 27}{space 2}-.1178883{col 38}{space 2} .52539411{col 51}{space 2}-35.70834{col 63}{space 1}-34.52442{col 73}{text}  (BC)
+{res}{col 1}{text}         nde{col 14}{c |}{result}{space 2}-23.860326{col 27}{space 2} .1444548{col 38}{space 2} .71385699{col 51}{space 2}-24.36985{col 63}{space 1}-22.27414{col 73}{text}  (BC)
+{res}{col 1}{text}         nie{col 14}{c |}{result}{space 2}-.32263925{col 27}{space 2}-.1386347{col 38}{space 2} .52365186{col 51}{space 2}-.7130796{col 63}{space 1} .4464498{col 73}{text}  (BC)
+{res}{col 1}{text}         mte{col 14}{c |}{result}{space 2}-24.182965{col 27}{space 2} .0058199{col 38}{space 2} .50096283{col 51}{space 2}-24.90178{col 63}{space 1}-23.48682{col 73}{text}  (BC)
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 11}{hline 13}{hline 12}{hline 10}{hline 6}
+{col 0}(BC){col 8}bias-corrected confidence interval
+{res}
+{txt}Note for outcome Y, treatment (exposure) A, and mediator M:
+     {it:controlled direct effect}
+          {result:cde} = E[Y(A=a, M=m) - Y(A=a*, M=m)] 
+     {it:natural direct effect}
+          {result:nde} = E[Y(A=a, M(A=a*)) - Y(A=a*, M(A=a*))]
+     {it:natural indirect effect}
+          {result:nie} = E[Y(A=a, M(A=a)) - Y(A=a, M(A=a*))]
+     {it:marginal total effect}
+          {result:mte} = E[Y(A=a) - Y(A=a*)]           
+
+Where Y(A = a, M = m) is the value Y would take if the exposure is set to a
+and the mediator is set to m. Y(A = a, M(A = a*)) is the value Y  would take
+if the exposure is set to a and the mediator takes the vaulue it would when 
+the exposure is set to a*.
+
+{com}. 
+. mat list e(effects) // note the effects matrix stores the non bootsrapped results
+{res}
+{txt}e(effects)[4,5]
+       Estimate     Std_Err       P>|z|   [95%_Conf   Interval]
+cde {res} -35.148087   .50975379           0  -36.147205   -34.14897
+{txt}nde {res} -23.860326   .71321343   2.20e-245  -25.258225  -22.462428
+{txt}nie {res} -.32263925   .74640509   .66555422  -1.7855932   1.1403147
+{txt}mte {res} -24.182965   4.7226287   3.045e-07  -33.439318  -14.926613
+{reset}
+{com}. 
+. log close 
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}N:\Paramed\Command\Paramed\Testing\paramed_changes.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}18 Jul 2019, 11:39:03
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
