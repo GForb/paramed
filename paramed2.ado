@@ -83,7 +83,7 @@ program define paramed2, eclass
 	if `a0' == -999999 & `a1' == -999999 {
 		qui inspect `avar'
 		if r(N_unique) ==2 {
-			levelsof `avar', local(a_levels)
+			qui levelsof `avar', local(a_levels)
 			tokenize `a_levels'
 			local a0 = `1'
 			local a1 = `2'	 
@@ -117,7 +117,7 @@ program define paramed2, eclass
 	local allnames `""cde=nde" "cde" "nde" "nie" "pnde" "pnie" "tnde" "tnie" "conditional cde" "conditional pnde" "conditional pnie" "conditional tnde" "conditional tnie" "marginal cde" "marginal pnde" "marginal pnie" "marginal tnde" "marginal tnie" "marginal total effect" "conditional total effect" "total effect" "proportion mediated""'
 //	local shortnames `"cde cde nde nie pnde pnie tnde tnie c_cde c_pnde c_pnie c_tnde c_tnie m_cde m_pnde m_pnie m_tnde m_tnie mte cte te pm"'
 	local shortnames `"cde cde nde nie pnde pnie tnde tnie ccde cpnde cpnie ctnde ctnie mcde mpnde mpnie mtnde mtnie mte cte te pm"'
-	local form_1  "E[Y(A=a, M=m) - Y(A=a*, M=m)]"  //cde
+	local form_1 "E[Y(A=a, M=m) - Y(A=a*, M=m)]"  //cde
 	local form_2 "E[Y(A=a, M=m) - Y(A=a*, M=m)]" // nde = cde and cde
 	local form_3 "E[Y(A=a, M(A=a*)) - Y(A=a*, M(A=a*))]" // nde
 	local form_4 "E[Y(A=a, M(A=a)) - Y(A=a, M(A=a*))]" // nie

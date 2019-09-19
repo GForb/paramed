@@ -19,3 +19,5 @@ paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(
 mat list e(effects) // note the effects matrix stores the non bootsrapped results
 
 log close 
+
+view paramed_changes.smcl
