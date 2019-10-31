@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}N:\Paramed\Command\Paramed\Testing\paramed_changes.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}18 Jul 2019, 11:39:02
+ {txt}opened on:  {res}19 Sep 2019, 10:41:16
 {txt}
 {com}. use paramed_example.dta, clear // this is the example data that is downloaded when the paramed package is installed.
 {txt}
@@ -311,10 +311,10 @@ Iteration 0:   log likelihood = {res}-693.14518
 {col 14}{text}{c |}    Observed{col 38}    Bootstrap
 {res}{col 14}{text}{c |}       Coef.{col 27}       Bias{col 38}    Std. Err.{col 51}  [95% Conf. Interval]
 {res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 11}{hline 13}{hline 12}{hline 10}{hline 6}
-{col 1}{text}         cde{col 14}{c |}{result}{space 2}-35.148087{col 27}{space 2}-.1178883{col 38}{space 2} .52539411{col 51}{space 2}-35.70834{col 63}{space 1}-34.52442{col 73}{text}  (BC)
-{res}{col 1}{text}         nde{col 14}{c |}{result}{space 2}-23.860326{col 27}{space 2} .1444548{col 38}{space 2} .71385699{col 51}{space 2}-24.36985{col 63}{space 1}-22.27414{col 73}{text}  (BC)
-{res}{col 1}{text}         nie{col 14}{c |}{result}{space 2}-.32263925{col 27}{space 2}-.1386347{col 38}{space 2} .52365186{col 51}{space 2}-.7130796{col 63}{space 1} .4464498{col 73}{text}  (BC)
-{res}{col 1}{text}         mte{col 14}{c |}{result}{space 2}-24.182965{col 27}{space 2} .0058199{col 38}{space 2} .50096283{col 51}{space 2}-24.90178{col 63}{space 1}-23.48682{col 73}{text}  (BC)
+{col 1}{text}         cde{col 14}{c |}{result}{space 2}-35.148087{col 27}{space 2} .4135139{col 38}{space 2} .45858361{col 51}{space 2}-35.43608{col 63}{space 1}-34.28389{col 73}{text}  (BC)
+{res}{col 1}{text}         nde{col 14}{c |}{result}{space 2}-23.860326{col 27}{space 2}-.0156547{col 38}{space 2} .76556057{col 51}{space 2}-24.95187{col 63}{space 1}-22.41989{col 73}{text}  (BC)
+{res}{col 1}{text}         nie{col 14}{c |}{result}{space 2}-.32263925{col 27}{space 2} .2301435{col 38}{space 2} .70744481{col 51}{space 2} -1.12147{col 63}{space 1} 1.317713{col 73}{text}  (BC)
+{res}{col 1}{text}         mte{col 14}{c |}{result}{space 2}-24.182965{col 27}{space 2} .2144888{col 38}{space 2} .74775194{col 51}{space 2}-25.14571{col 63}{space 1}-23.21478{col 73}{text}  (BC)
 {res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 11}{hline 13}{hline 12}{hline 10}{hline 6}
 {col 0}(BC){col 8}bias-corrected confidence interval
 {res}
@@ -348,7 +348,7 @@ cde {res} -35.148087   .50975379           0  -36.147205   -34.14897
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}N:\Paramed\Command\Paramed\Testing\paramed_changes.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}18 Jul 2019, 11:39:03
+ {txt}closed on:  {res}19 Sep 2019, 10:41:16
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
