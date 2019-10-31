@@ -31,7 +31,7 @@ yreg({it:string}) mreg({it:string}) [cvars({varlist}) {opt nointer:action} {opt 
 
 {phang}{opt m(real)} - this specifies the level of mediator at which the controlled direct effect 
 is to be estimated.  If there is no treatment (exposure)-mediator interaction the controlled direct effect
-is the same at all levels of the mediator and so an arbitary value can be chosen.
+is the same at all levels of the mediator and this option may be ommited.
 
 {phang}{opt yreg(string)} - this specifies the form of regression model to be fitted for the outcome 
 variable. This can be either {it:linear}, {it:logistic}, {it:loglinear}, {it:Poisson} or {it:Negative binomial}.
@@ -84,11 +84,16 @@ bootstrap confidence intervals. The bootstrap procedure will not be performed if
 
 {phang}{opt reps(integer 1000)} - this specifies the number of replications for bootstrap. The default is 1000.
 
+{phang}{opt interval(string)} - this specifies the type of bootstrap confidence interval to be calculated. 
+The default is bias corrected. Supported options are {it:percentile} or {it:normal}.
+
 {phang}{opt level(cilevel)} - this specifies the confidence level for bootstrap. If this option is omitted, 
 the current default level of 95% will be used.
 
 {phang}{opt seed(passthru)} - this specifies the seed for bootstrap. If this option is omitted, a random 
 seed will be used and the results cannot be replicated. {p_end}
+
+{phang}{opt nodef:initions} - this option suppresses the definitions of causal effects given after the table of results.
 
 {title:Assumptions}
 
@@ -136,6 +141,7 @@ no interaction between treatment and mediator, bootstrap standard errors with 10
 {p2col 5 15 19 2: Matrices}{p_end}
 {synopt:{cmd:e(b)}}matrix containing direct, indirect and total effect estimates{p_end}
 {synopt:{cmd:e(V)}}matrix containing variance of the effect estimates{p_end}
+{synopt:{cmd:e(effects)}}matrix containing the results table for the estiamtes of causal effects. {p_end}
 
 
 {title:Authors}
@@ -149,14 +155,14 @@ The University of Manchester{p_end}
 Harvard School of Public Health{break}
 Harvard University{p_end}
 
-{phang}Email: richard.emsley@manchester.ac.uk or hanhua.liu@manchester.ac.uk
+{phang}Email: richard.emsley@kcl.ac.uk or gordon.forbes@kcl.ac.uk
 
 
 {title:Further reading}
 
 Emsley RA, Liu H, Dunn G, Valeri L, VanderWeele TJ. (2013). paramed: causal mediation analysis using parametric models. In preparation.
 
-Valeri L, VanderWeele TJ. (2013). Mediation Analysis Allowing for Exposure–Mediator Interactions and Causal Interpretation: 
+Valeri L, VanderWeele TJ. (2013). Mediation Analysis Allowing for Exposureâ€“Mediator Interactions and Causal Interpretation: 
 Theoretical Assumptions and Implementation With SAS and SPSS Macros. Psychological Methods. Advance online
 publication. doi: 10.1037/a0031034
 
@@ -172,6 +178,12 @@ and a UK Medical Research Council Career Development Award in Biostatistics (Gra
 The command is based on the MEDIATION macros in SAS and SPSS by Linda Valeri and Tyler VanderWeele.
 
 We are grateful to Tom Palmer and Ian White for the suggestions they have made to improve this command.
+
+
+{title:Version history}
+Version 2.0 of paramed made available November 2019. The following changes have been made since version 1:
+{pstd} 1) Definitions of the causal effects have been added to the output. {p_end}
+{pstd} 2) Version 1 of paramed gave incorrect estimates of the variance when . This bug has been fixed. {p_end}
 
 
 {title:Also see}

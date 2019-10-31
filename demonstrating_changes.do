@@ -1,7 +1,9 @@
 *Demonstrating new features
+cd "N:\Paramed\Command\Paramed" 
+
 cap log close	
-log using paramed_changes, smcl replace
-use paramed_example.dta, clear // this is the example data that is downloaded when the paramed package is installed.
+log using "Examples/paramed_changes", smcl replace
+use Testing/paramed_example.dta, clear // this is the example data that is downloaded when the paramed package is installed.
 
 *1. Reduced output
 paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) // 
@@ -14,10 +16,25 @@ paramed2 y_cont, avar(treat) mvar(m_bin)  m(1) yreg(linear) mreg(logistic)  full
 paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2)  m(1) yreg(linear) mreg(logistic)  full c(5, 10) // output
 
 *4. Bootstrap output
-paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) // 
+paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) seed(1234) // 
+paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) seed(1234) interval(percentile) // 
+paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) seed(1234) interval(normal) // 
+paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) seed(1234) interval(bc) // 
+paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2) a0(0) a1(1) m(1) yreg(linear) mreg(logistic) boot reps(10) seed(1234) interval(sdfsdf) // 
+
 
 mat list e(effects) // note the effects matrix stores the non bootsrapped results
 
+
+*5 Ommiting m when nointer is specified
+paramed2 y_cont, avar(treat) mvar(m_bin) nointeraction yreg(linear) mreg(logistic)  full // full output
+paramed2 y_cont, avar(treat) mvar(m_bin) m(1) nointeraction yreg(linear) mreg(logistic)  full // full output
+
+*6 Surpressing output
+paramed2 y_cont, avar(treat) mvar(m_bin) cvars(var1 var2)  m(1) yreg(linear) mreg(logistic)  full c(5, 10) nodef // output
+
+
 log close 
 
-view paramed_changes.smcl
+view Examples/paramed_changes.smcl
+

@@ -45,7 +45,7 @@
 *!	version 0.3b HL/RAE 24 September 2011
 *!	
 *!	version 0.3a HL/RAE 17 September 2011 - mediation.ado
-
+cap prog drop paramedbs2
 program define paramedbs2, eclass
 	version 10.0	
 
@@ -80,6 +80,7 @@ program define paramedbs2, eclass
 		local mreg : word `nmreg' of `mregtypes'
 	}
 	
+
 	//validate cvars and nc
 	local cvar `cvars'
 //	local ncvars = wordcount("`cvar'")
@@ -159,7 +160,6 @@ program define paramedbs2, eclass
 	*Setting text to display prior to results
 	local outcome_model_text _newline as text "Model for the outcome" 
 	local mediator_model_text  _newline(2) as text "Model for the mediator" 
-	local ce_text _newline(2) as text "Estimates of causal effects"
 
 
 	di `outcome_model_text'
@@ -602,13 +602,12 @@ program define paramedbs2, eclass
 
 //	set linesize 100	//to accommodate all 5 columns
 	
-	di `ce_text' // local macro set at top of ado file
-	
 	matrix colnames `tempmat' = Estimate Std_Err P>|z| [95%_Conf Interval]
 	matrix rownames `tempmat' = `newrownames'
 	local cspec "cspec(& b %12s | %10.0g & %10.0g & %6.3f & %10.0g & %10.0g &)"
 	local rowspec = substr("`rspec'", length("rspec(")+1, nrow+2)	//get rspec passed from mata, remove last row
-	matlist `tempmat', `cspec' rspec(`"`rowspec'"') underscore
+	
+
 //	mat list `tempmat', noheader format(%10.0g)	
 	
 		ereturn matrix effects = `tempmat'

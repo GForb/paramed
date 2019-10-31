@@ -60,15 +60,15 @@ program define paramed2, eclass
 		//fake stata replay feature by simply display the resulting effects matrix again
 	//	matrix list e(effects), noheader
 		matlist e(effects), noheader underscore
-		exit 0
+		exit 0	
 	}
 	
 	
-	syntax varname(numeric), avar(varname numeric) mvar(varname numeric)	///
-			[cvars(varlist numeric)] [a0(real -999999)  a1(real -999999)] m(real) ///
-			yreg(string) mreg(string) [NOINTERaction	///
-			CASEcontrol FULLoutput c(numlist)] ///
-			[BOOTstrap reps(integer 1000) level(cilevel) seed(passthru)] 
+	syntax varname(numeric), yreg(string) mreg(string) avar(varname numeric) mvar(varname numeric)	///
+			[cvars(varlist numeric) a0(real -999999)  a1(real -999999), m(real -999999)  ///
+			NOINTERaction NODEFinitions	///
+			CASEcontrol FULLoutput c(numlist) ///
+			BOOTstrap reps(integer 1000) level(cilevel) seed(passthru) interval(string)] 
 	
 	
 	
@@ -99,15 +99,35 @@ program define paramed2, eclass
 		exit 198
 	}
 	
+	*Processing m(real)
+	if `m' == -999999 & "`NOINTERaction'" != "" {
+		di as error "m must be specified unless nointeration is specified"
+		exit 198
+	}
+	if `m' == -999999 & "`NOINTERaction'" == "" {
+		qui su `mvar'
+		local m = r(mean)
+	}
 	
+	*Validate bootstrap interval 
+	if  !inlist("`interval'", "", "percentile", "normal", "bc", "all") {
+			display as error "Error: interval must be one of percentile, normal or bc."
+		error 198	
+	}
+	
+	*Running command
 	paramedbs2 `varlist', avar(`avar') mvar(`mvar') cvars(`cvars')	///
 				a0(`a0') a1(`a1') m(`m') yreg(`yreg') mreg(`mreg')	///
 				`nointeraction' `casecontrol' `fulloutput' c(`c')
-
 	matrix effects = e(effects)
 	local nrow = rowsof(effects)
 	
-	
+	di _newline(2) as text "Estimates of causal effects"
+	*Returning results if bootstrap not specified
+	if "`bootstrap'" == "" {
+		matlist effects, `cspec' rspec(`"`rowspec'"') underscore
+	}
+
 
 	
 
@@ -161,38 +181,40 @@ program define paramed2, eclass
 	
 	
 	*Running bootstrap
+
 	if "`bootstrap'" != "" {
 		local bs ""
 		forvalues i=1(1)`nrow' {
 			local bs `"`bs' `bs_`i''=e(`bs_`i'')"'
 		}
-		quietly bootstrap `bs', reps(`reps') level(`level') `seed':	///
+		quietly bootstrap `bs', reps(`reps') level(`level') `seed' `bca':	///
 				paramedbs2 `varlist', avar(`avar') mvar(`mvar') cvars(`cvars')	///
 					a0(`a0') a1(`a1') m(`m') yreg(`yreg') mreg(`mreg') ///
 					`nointeraction' `casecontrol' `fulloutput' c(`c')
 		
 		display		
 		
-		estat bootstrap, noheader	//only report bias-corrected confidence interval
+		estat bootstrap, `interval' noheader	//only report bias-corrected confidence interval
+		
 		
 		tempname boot_effects
 		mat `boot_effects' = (e(b) \ e(bias) \ e(se) \ e(ci_bc))'
 		mat coln `boot_effects' = "Estimate" "Bias" "Boot_Std_Err" "UL" "LL" 
 		*mat list `boot_effects'
-	
+		mat effects = `boot_effects'
+
 	}
 	
-	
-	*display 
-	*display "{p 5}"
-	di _newline as text "Note for outcome Y, treatment (exposure) A, and mediator M:"
-	di `keys'
-	di "Where Y(A = a, M = m) is the value Y would take if the exposure is set to a" _newline ///
-				"and the mediator is set to m. Y(A = a, M(A = a*)) is the value Y  would take" _newline ///
-				"if the exposure is set to a and the mediator takes the vaulue it would when " _newline ///
-				"the exposure is set to a*."
-	*display "{p_end}"
-
+	if "`nodefinitions'" == "" {
+		*display 
+		*display "{p 5}"
+		di _newline as text "Note for outcome Y, treatment (exposure) A, and mediator M:"
+		di `keys'
+		di "Where Y(A = a, M = m) is the value Y would take if the exposure is set to a" _newline ///
+					"and the mediator is set to m. Y(A = a, M(A = a*)) is the value Y  would take" _newline ///
+					"if the exposure is set to a and the mediator takes the vaulue it would when " _newline ///
+					"the exposure is set to a*."
+	}
 	
 
 
