@@ -46,8 +46,8 @@
 *!	
 *!	version 0.3a HL/RAE 17 September 2011 - mediation.ado
 
-cap prog drop paramed2
-program define paramed2, eclass
+cap prog drop paramed
+program define paramed, eclass
 	version 10.0	
 
 	//implementing stata replay feature, i.e. after running paramed, issuing just paramed should reprint the results
@@ -65,7 +65,7 @@ program define paramed2, eclass
 	
 	
 	syntax varname(numeric), yreg(string) mreg(string) avar(varname numeric) mvar(varname numeric)	///
-			[cvars(varlist numeric) a0(real -999999)  a1(real -999999), m(real -999999)  ///
+			[cvars(varlist numeric) a0(numlist  max = 1)  a1(numlist  max = 1), m(numlist  max = 1)  ///
 			NOINTERaction NODEFinitions	///
 			CASEcontrol FULLoutput c(numlist) ///
 			BOOTstrap reps(integer 1000) level(cilevel) seed(passthru) interval(string)] 
@@ -80,7 +80,7 @@ program define paramed2, eclass
 	}
 	
 	*Processing levels of avar
-	if `a0' == -999999 & `a1' == -999999 {
+	if (mi("`a0'") & mi("`a1'")) {
 		qui inspect `avar'
 		if r(N_unique) ==2 {
 			qui levelsof `avar', local(a_levels)
@@ -94,19 +94,21 @@ program define paramed2, eclass
 		}
 	}
 	
-	if (`a0' == -999999 & `a1' != -999999) | (`a0' != -999999 & `a1' == -999999) {
+	if ((mi("`a0'") & !mi("`a1'")) | (!mi("`a0'") & mi("`a1'"))) {
 		di as error "options a1 and a0 must either both be specified or both ommited"
 		exit 198
 	}
 	
 	*Processing m(real)
-	if `m' == -999999 & "`NOINTERaction'" != "" {
-		di as error "m must be specified unless nointeration is specified"
-		exit 198
-	}
-	if `m' == -999999 & "`NOINTERaction'" == "" {
-		qui su `mvar'
-		local m = r(mean)
+	if mi("`m'") {
+        if "`nointeraction'" != "" {
+            qui su `mvar'
+            local m = r(mean)
+        }
+        else {
+            di as error "m must be specified unless nointeration is specified"
+            exit 198
+        }
 	}
 	
 	*Validate bootstrap interval 
@@ -183,6 +185,8 @@ program define paramed2, eclass
 	*Running bootstrap
 
 	if "`bootstrap'" != "" {
+        if "`interval'" == "" local interval "percentile"
+    
 		local bs ""
 		forvalues i=1(1)`nrow' {
 			local bs `"`bs' `bs_`i''=e(`bs_`i'')"'
