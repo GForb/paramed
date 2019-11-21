@@ -118,7 +118,7 @@ program define paramed, eclass
 	}
 	
 	*Running command
-	paramedbs2 `varlist', avar(`avar') mvar(`mvar') cvars(`cvars')	///
+	paramedbs `varlist', avar(`avar') mvar(`mvar') cvars(`cvars')	///
 				a0(`a0') a1(`a1') m(`m') yreg(`yreg') mreg(`mreg')	///
 				`nointeraction' `casecontrol' `fulloutput' c(`c')
 	matrix effects = e(effects)
@@ -192,7 +192,7 @@ program define paramed, eclass
 			local bs `"`bs' `bs_`i''=e(`bs_`i'')"'
 		}
 		quietly bootstrap `bs', reps(`reps') level(`level') `seed' `bca':	///
-				paramedbs2 `varlist', avar(`avar') mvar(`mvar') cvars(`cvars')	///
+				paramedbs `varlist', avar(`avar') mvar(`mvar') cvars(`cvars')	///
 					a0(`a0') a1(`a1') m(`m') yreg(`yreg') mreg(`mreg') ///
 					`nointeraction' `casecontrol' `fulloutput' c(`c')
 		

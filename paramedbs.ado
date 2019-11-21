@@ -45,8 +45,8 @@
 *!	version 0.3b HL/RAE 24 September 2011
 *!	
 *!	version 0.3a HL/RAE 17 September 2011 - mediation.ado
-cap prog drop paramedbs2
-program define paramedbs2, eclass
+cap prog drop paramedbs
+program define paramedbs, eclass
 	version 10.0	
 
 	syntax varname(numeric), avar(varname numeric) mvar(varname numeric)	///
