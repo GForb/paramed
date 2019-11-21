@@ -1,0 +1,8 @@
+v 1.5
+d Materials by Hanhua Liu, Richard Emsley
+d Kings College London
+d richard.emsley@kcl.ac.uk
+
+d 'paramed': module to perform causal mediation analysis using parametric regression models
+
+p paramed
