@@ -124,6 +124,12 @@ program define paramed, eclass
 		display		
 
 		estat bootstrap, noheader	//only report bias-corrected confidence interval
+        
+        tempname boot_effects
+		mat `boot_effects' = (e(b) \ e(bias) \ e(se) \ e(ci_bc))'
+		mat coln `boot_effects' = "Estimate" "Bias" "Boot_Std_Err" "UL" "LL" 
+		*mat list `boot_effects'
+		mat effects = `boot_effects'
 	}
 
 
