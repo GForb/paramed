@@ -1,12 +1,12 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
-*!	verson 2.0 GF RE 01/11/2019
-*!	    bug fix - 
-*!	
-*!	
-*!	
-*!	
+*!	verson 1.6 GF RE 01/11/2019
+*!  Bug fix
+*!  - Fixed bug relating to calculating of standard error for natural indirect effect when the mediator and outcome are continuous,
+*!  - exposures i binary, there is an exposure-mediator interaction, and no covariates
+*!  - See issue 01 on paramed github for more details
+*!  - Change is implemented in MATA code
 *!	
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)

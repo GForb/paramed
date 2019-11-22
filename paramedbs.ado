@@ -2,7 +2,7 @@
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
 *!	verson 1.6 FG/RAE 24 April 2013
-*!			Added text output before fitting model for outcome and model for mediator
+*!		Added text output before fitting model for outcome and model for mediator
 *!				
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)

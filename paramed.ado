@@ -1,8 +1,29 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu, Gordon Forbes, and Richard Emsley, Centre for Biostatistics, The University of Manchester
+*!The package can be found on github at https://github.com/GForb/paramed/. Please report any issues on the github page.
 *!
-*!	verson 1.6 GF/RAE 13 June 2019
-*!	Updated output text with more details given on causal effects reported
+*!	verson 1.6 GF/RAE 21 Nov 2019
+*!  Bug fix
+*!  - Fixed bug relating to calculating of standard error for natural indirect effect when the mediator and outcome are continuous,
+*!  - exposures i binary, there is an exposure-mediator interaction, and no covariates
+*!  - See issue 01 on paramed github for more details
+*!  - Change is implemented in MATA code
+*!
+*!  Changes to output text
+*!  - Updated output text with more details given on causal effects reported
+*!
+*!  Syntax changes
+*!  - Specifying levels of avar made optional when avar is binary
+*!  - Specifying value of m for controlled direct effect made optional when no interaction is specified
+*!  
+*!  Bootsrappting
+*!  - Default bootsrap changed to percentile
+*!  - BCA bootstrap (which was previous default) can now be specified with an option)
+*!
+*!	verson 1.5.1 GF/RAE 22/11/2019
+*!		Changed the matrix returned in e(effects) from the non-bootstrapped results to the results from the bootsrap when bootsrap is specified.
+*!
+*!
 *!
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)
