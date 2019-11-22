@@ -1,6 +1,12 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
+*!	verson 1.5.1 GF/RAE 22/11/2019
+*!		Changed the matrix returned in e(effects) from the non-bootstrapped results to the results from the bootsrap when bootsrap is specified.
+*!
+*!
+*!
+*!
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)
 *!				  (e.g. at 95%, [b-1.96*se, b+1.96*se]) does not work for non-linear cases
