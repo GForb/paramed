@@ -11,5 +11,6 @@ make paramed,  toc pkg  version(2.0.0)                                       ///
      url("")                                                                 ///
      title("paramed")                                                        ///
      description("module to perform causal mediation analysis using parametric regression models") ///
-     install("paramed.ado;paramed.mata;paramed.sthlp;paramedbs.ado")         ///
-     iancillary("paramed_example.dta")                                      
+     install("paramed.ado;paramed.mata;paramed.sthlp;paramedbs.ado;paramed.mo")         ///
+     ancillary("paramed_example.dta")  ///
+     replace
