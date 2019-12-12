@@ -12,7 +12,7 @@ make paramed,  toc pkg  version(2.0.0)                                       ///
      url("https://github.com/GForb/paramed/")                                ///
      title("paramed")                                                        ///
      description("module to perform causal mediation analysis using parametric regression models") ///
-     install("paramed.ado;paramed.mata;paramed.sthlp;paramedbs.ado")         ///
+     install("paramed.ado;paramed2.mata;paramed.sthlp;paramedbs.ado")         ///
      ancillary("paramed_example.dta;paramed2.mo")  ///
      replace
 
