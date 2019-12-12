@@ -3,7 +3,12 @@
 ### Installation
 To install the latest version of `paramed` from github enter the below command. This version is currently not available on SSC:
 
-`net install paramed, from("https://raw.githubusercontent.com/GForb/paramed/master")`
+To install first uninstall any previous versoins of paramed, then use net install to install paramed from github:
+`ssc uninstall paramed`
+`net install paramed, from("https://raw.githubusercontent.com/GForb/paramed/master")` 
+
+If you already have paramed installed you must uninstall it first with `uninstall`. Do not use the `net install replace` option If you do not uninstall the version of paramed installed from SSC (for example you use the replace option with net install) Stata will think there are two versions of parmed installed.
+
 
 ### `paramed` performs causal mediation analysis using parametric regression models.  
 
