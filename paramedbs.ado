@@ -1,7 +1,7 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
-*!	verson 1.6 FG/RAE 24 April 2013
+*!	verson 2.0.0 FG/RAE 12 Dec 2019
 *!		Added text output before fitting model for outcome and model for mediator
 *!				
 *!	verson 1.5 HL/RAE 24 April 2013
@@ -161,8 +161,9 @@ program define paramedbs, eclass
 	local outcome_model_text _newline as text "Model for the outcome" 
 	local mediator_model_text  _newline(2) as text "Model for the mediator" 
 
-
 	di `outcome_model_text'
+
+
 		
 	
 	****************************************
@@ -173,7 +174,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' `cvar'
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			regress `mvar' `avar' `cvar'
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -183,7 +183,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' //if !`interaction' //& `cvar'==""
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			regress `mvar' `avar' //if !`interaction' //& `cvar'==""
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -193,7 +192,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' `inter' `cvar'
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			regress `mvar' `avar' `cvar'
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -203,7 +201,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' `inter' //if `interaction' //& `cvar'==""
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			regress `mvar' `avar' //if `interaction' //& `cvar'==""
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -217,7 +214,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' `cvar'
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			logit `mvar' `avar' `cvar'
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -227,7 +223,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar'
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			logit `mvar' `avar'
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -237,7 +232,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' `inter' `cvar'
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			logit `mvar' `avar' `cvar'
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -247,7 +241,6 @@ program define paramedbs, eclass
 			regress `yvar' `avar' `mvar' `inter'
 			matrix out1 = e(V)
 			matrix beta1 = e(b)
-			di `mediator_model_text'
 			logit `mvar' `avar'
 			matrix out2 = e(V)
 			matrix beta2 = e(b)
@@ -281,11 +274,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar' `cvar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar' `cvar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -316,11 +307,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -351,11 +340,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar' `cvar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar' `cvar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -386,11 +373,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				logit `mvar' `avar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -427,11 +412,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar' `cvar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar' `cvar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -463,11 +446,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -499,11 +480,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar' `cvar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar' `cvar' if `yvar'==0
 			}
 			matrix out2 = e(V)
@@ -537,11 +516,9 @@ program define paramedbs, eclass
 			}
 			
 			if ("`casecontrol'"!="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar'
 			} 
 			if ("`casecontrol'"=="true") {
-				di `mediator_model_text'
 				reg `mvar' `avar' if `yvar'==0
 			}
 			matrix out2 = e(V)

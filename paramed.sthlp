@@ -1,6 +1,6 @@
 {smcl}
 {* *! version 1.5.0, 24 April 2013}{...}
-{cmd:help for paramed}{right:Hanhua Liu, Gordon Forbes, and Richard Emsley}
+{cmd:help for paramed}{right:Hanhua Liu and Richard Emsley}
 {hline}
 
 {title:Title}
