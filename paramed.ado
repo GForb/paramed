@@ -93,13 +93,6 @@ program define paramed, eclass
 	
 	
 	
-	capture confirm file "`c(sysdir_plus)'paramed.mo"
-	if _rc!=0 {
-		display as error "Compiling paramed.mata into paramed.mo ..."
-		display as error "This only happens the first time you run paramed, which may take a while."
-		quietly do "`c(sysdir_plus)'p/paramed.mata"
-	}
-	
 	*Processing levels of avar
 	if (mi("`a0'") & mi("`a1'")) {
 		qui inspect `avar'
