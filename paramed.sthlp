@@ -79,13 +79,12 @@ effects are computed (the number of values must correspond to the number of cova
 case-control design, provided the outcome in the population is rare. If this option is omitted, the data 
 will not be treated as from a case-control design.
 
-{phang}{opt boot:strap} - this specifies whether a bootstrap procedure should be performed to compute bias-corrected 
-bootstrap confidence intervals. The bootstrap procedure will not be performed if this option is omitted.
+{phang}{opt boot:strap} - this specifies whether a bootstrap procedure should be performed to compute bias-corrected confidence intervals. The bootstrap procedure will not be performed if this option is omitted.
 
 {phang}{opt reps(integer 1000)} - this specifies the number of replications for bootstrap. The default is 1000.
 
 {phang}{opt interval(string)} - this specifies the type of bootstrap confidence interval to be calculated. 
-The default is bias corrected. Supported options are {it:percentile} or {it:normal}.
+The default is the percentile bootstrap. Supported options are {it:bc} (for bias corrected) or {it:normal}.
 
 {phang}{opt level(cilevel)} - this specifies the confidence level for bootstrap. If this option is omitted, 
 the current default level of 95% will be used.
@@ -146,7 +145,13 @@ no interaction between treatment and mediator, bootstrap standard errors with 10
 
 {title:Authors}
 
-{pstd}Hanhua Liu, Richard Emsley and Graham Dunn{break}
+{pstd}Gordon Forbes and Richard Emsley{break}
+Department of Biostatistics & Health Informatics{break}
+Institute of Psychiatry, Psychology & Neuroscience{break}
+Kings College London{p_end}
+
+
+{pstd}Hanhua Liu and Graham Dunn{break}
 Centre for Biostatistics{break}
 Institute of Population Health{break}
 The University of Manchester{p_end}
@@ -181,9 +186,17 @@ We are grateful to Tom Palmer and Ian White for the suggestions they have made t
 
 
 {title:Version history}
-Version 2.0 of paramed made available November 2019. The following changes have been made since version 1:
-{pstd} 1) Definitions of the causal effects have been added to the output. {p_end}
-{pstd} 2) Version 1 of paramed gave incorrect estimates of the variance when . This bug has been fixed. {p_end}
+{pstd} Version 2.0.0 of paramed made available December 2019. The following changes have been made since version 1.5 (version 1.5 was released on SSC April 2013):{p_end}
+
+{phang} 1) Fixed bug where paramed gave incorrect estimates of the variance for the natural indirect effect when exposure is binary, there is an exposure-mediator interaction, and no covariates are specified. See issue 01 on paramed github for more details. {p_end}
+
+{phang} 2) Default bootsrap changed to percentile. BC bootstrap (which was previous default) can now be specified with an option. {p_end}
+
+{phang} 3) Definitions of the causal effects have been added to the output. {p_end}
+
+{phang} 4) Specifying levels of avar made optional when avar is binary. {p_end}
+
+{phang} 5) Specifying value of m for controlled direct effect made optional when no interaction is specified. {p_end}
 
 
 {title:Also see}

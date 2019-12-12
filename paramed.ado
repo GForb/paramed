@@ -2,7 +2,7 @@
 *!AUTHORS: Hanhua Liu, Gordon Forbes, and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!The package can be found on github at https://github.com/GForb/paramed/. Please report any issues on the github page.
 *!
-*!	verson 1.6 GF/RAE 21 Nov 2019
+*!	verson 2.0.0 GF/RAE 12 Dec 2019
 *!  Bug fix
 *!  - Fixed bug relating to calculating of standard error for natural indirect effect when the mediator and outcome are continuous,
 *!  - exposures i binary, there is an exposure-mediator interaction, and no covariates
@@ -109,7 +109,7 @@ program define paramed, eclass
 	}
 	
 	if ((mi("`a0'") & !mi("`a1'")) | (!mi("`a0'") & mi("`a1'"))) {
-		di as error "options a1 and a0 must either both be specified or both ommited"
+		di as error "options a1 and a0 must either both be specified or both ommited. May only be ommited when avar is binary."
 		exit 198
 	}
 	
@@ -148,7 +148,7 @@ program define paramed, eclass
 	
 
 	//fully expanded names to show as keys to the abbreviations
-	local longnames `""controlled direct effect" "controlled direct effect" "natural direct effect" "natural indirect effect" "pure natural direct effect" "pure natural indirect effect" "total natural direct effect" "total natural indirect effect" "conditional controlled direct effect" "conditional pure natural direct effect" "conditional pure natural indirect effect" "conditional total natural direct effect" "conditional total natural indirect effect" "marginal conditional direct effect" "marginal pure natural direct effect" "marginal pure natural indirect effect" "marginal total natural direct effect" "marginal total natural indirect effect" "marginal total effect" "conditional total effect" "total effect" "proportion mediated""'
+	local longnames `""controlled direct effect" "controlled direct effect" "natural direct effect" "natural indirect effect" "pure natural direct effect" "pure natural indirect effect" "total natural direct effect" "total natural indirect effect" "conditional controlled direct effect" "conditional pure natural direct effect" "conditional pure natural indirect effect" "conditional total natural direct effect" "conditional total natural indirect effect" "marginal controlled direct effect" "marginal pure natural direct effect" "marginal pure natural indirect effect" "marginal total natural direct effect" "marginal total natural indirect effect" "marginal total effect" "conditional total effect" "total effect" "proportion mediated""'
 	//all names used in meta code
 	local allnames `""cde=nde" "cde" "nde" "nie" "pnde" "pnie" "tnde" "tnie" "conditional cde" "conditional pnde" "conditional pnie" "conditional tnde" "conditional tnie" "marginal cde" "marginal pnde" "marginal pnie" "marginal tnde" "marginal tnie" "marginal total effect" "conditional total effect" "total effect" "proportion mediated""'
 //	local shortnames `"cde cde nde nie pnde pnie tnde tnie c_cde c_pnde c_pnie c_tnde c_tnie m_cde m_pnde m_pnie m_tnde m_tnie mte cte te pm"'
@@ -212,7 +212,7 @@ program define paramed, eclass
 		
 		display		
 		
-		estat bootstrap, `interval' noheader	//only report bias-corrected confidence interval
+		estat bootstrap, `interval' noheader	// only report bias-corrected confidence interval
 		
 		
 		tempname boot_effects
