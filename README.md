@@ -2,7 +2,7 @@
 
 ### `paramed` performs causal mediation analysis using parametric regression models.  
 
-To install the latest version of `paramed` from github use the command:
+To install the latest version of `paramed` from github enter the command:
 
 `net install paramed, from("https://raw.githubusercontent.com/GForb/paramed/master")`
 
