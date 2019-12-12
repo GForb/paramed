@@ -2,7 +2,8 @@
 
 ### `paramed` performs causal mediation analysis using parametric regression models.  
 
-To install the latest version of `paramed` from github use the command: 
+To install the latest version of `paramed` from github use the command:
+
 `net install paramed, from("https://raw.githubusercontent.com/GForb/paramed/master")`
 
 Two models are estimated: a model for the mediator conditional on treatment (exposure) and covariates (if specified), and a model for the outcome conditional on treatment (exposure), the mediator and covariates (if specified).  It extends statistical mediation analysis (widely known as Baron and Kenny procedure) to allow for the presence of treatment (exposure)-mediator interactions in the outcome regression model using counterfactual definitions of direct and indirect effects. 
