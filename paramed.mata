@@ -1,7 +1,7 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
-*!	verson 1.6 GF RE 01/11/2019
+*!	verson 2.0.0 GF RE 01/11/2019
 *!  Bug fix
 *!  - Fixed bug relating to calculating of standard error for natural indirect effect when the mediator and outcome are continuous,
 *!  - exposures i binary, there is an exposure-mediator interaction, and no covariates
@@ -3519,6 +3519,6 @@ void paramed(
 end
 
 
-*mata: mata mosave paramed() // run this line to compile .mo file in working directory
+*mata: mata mosave paramed(), replace // run this line to compile .mo file in working directory
 *mata: mata mosave paramed(), dir(PLUS) replace // run this line to compile in ado "plus" directory
 
