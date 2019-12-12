@@ -529,7 +529,7 @@ program define paramedbs, eclass
 	//end of block 4
 	
 	
-	mata: paramed("`cvar'", `a0', `a1', `m', `nc', "`yreg'", "`mreg'", "`interaction'", "`output'", "`c'")
+	mata: paramed2("`cvar'", `a0', `a1', `m', `nc', "`yreg'", "`mreg'", "`interaction'", "`output'", "`c'")
 	
 	local allnames `""cde=nde" "cde" "nde" "nie" "pnde" "pnie" "tnde" "tnie" "conditional cde" "conditional pnde" "conditional pnie" "conditional tnde" "conditional tnie" "marginal cde" "marginal pnde" "marginal pnie" "marginal tnde" "marginal tnie" "marginal total effect" "conditional total effect" "total effect" "proportion mediated""'
 	local shortnames `"cde cde nde nie pnde pnie tnde tnie ccde cpnde cpnie ctnde ctnie mcde mpnde mpnie mtnde mtnie mte cte te pm"'

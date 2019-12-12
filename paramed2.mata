@@ -7,6 +7,7 @@
 *!  - exposures i binary, there is an exposure-mediator interaction, and no covariates
 *!  - See issue 01 on paramed github for more details
 *!  - Change is implemented in MATA code
+*!  - Note mata function is renamed to paramed2 to ensure latest version is used with updated command
 *!	
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)
@@ -44,7 +45,7 @@ mata: mata clear
 mata: mata set matastrict off
 mata:
 
-void paramed(
+void paramed2(
 		string scalar cvar, 
 		real scalar a0, 
 		real scalar a1, 
@@ -3519,6 +3520,5 @@ void paramed(
 end
 
 
-*mata: mata mosave paramed(), replace // run this line to compile .mo file in working directory
-*mata: mata mosave paramed(), dir(PLUS) replace // run this line to compile in ado "plus" directory
+mata: mata mosave paramed2(), replace // run this line to compile .mo file in working directory
 
