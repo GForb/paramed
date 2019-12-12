@@ -1,8 +1,8 @@
 v 2.0.0
-d Materials by Gordon Forbes
+d Materials by Gordon Forbes , Hanhua Liu, Richard Emsley
 d Kings College London
 d gordon.forbes@kcl.ac.uk
-
+d https://github.com/GForb/paramed/
 
 d 'paramed': module to perform causal mediation analysis using parametric regression models
 
