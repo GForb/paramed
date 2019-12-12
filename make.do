@@ -3,6 +3,8 @@
 // DO NOT FORGET to update the version of the package, if changed!
 // for more information visit http://github.com/haghish/github
 
+
+*Creating toc and pkg files
 make paramed,  toc pkg  version(2.0.0)                                       ///
      license("MIT")                                                          ///
      author("Gordon Forbes")                                                 ///
@@ -11,6 +13,6 @@ make paramed,  toc pkg  version(2.0.0)                                       ///
      url("")                                                                 ///
      title("paramed")                                                        ///
      description("module to perform causal mediation analysis using parametric regression models") ///
-     install("paramed.ado;paramed.mata;paramed.sthlp;paramedbs.ado;paramed.mo")         ///
-     ancillary("paramed_example.dta")  ///
+     install("paramed.ado;paramed.mata;paramed.sthlp;paramedbs.ado")         ///
+     ancillary("paramed_example.dta;paramed.mo")  ///
      replace

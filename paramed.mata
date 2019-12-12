@@ -3518,4 +3518,7 @@ void paramed(
 
 end
 
-mata: mata mosave paramed(), dir(PLUS) replace
+
+*mata: mata mosave paramed() // run this line to compile .mo file in working directory
+*mata: mata mosave paramed(), dir(PLUS) replace // run this line to compile in ado "plus" directory
+
