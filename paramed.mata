@@ -1,6 +1,13 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
+*!	verson 1.6 GF RE 01/11/2019
+*!  Bug fix
+*!  - Fixed bug relating to calculating of standard error for natural indirect effect when the mediator and outcome are continuous,
+*!  - exposures i binary, there is an exposure-mediator interaction, and no covariates
+*!  - See issue 01 on paramed github for more details
+*!  - Change is implemented in MATA code
+*!	
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)
 *!				  (e.g. at 95%, [b-1.96*se, b+1.96*se]) does not work for non-linear cases
@@ -574,7 +581,8 @@ void paramed(
 			h0=beta0 + beta1*a1
 			condgammatnde=(x0, theta3,  one1, zero, h0', zero)
 			w0=beta1*a1
-			condgammatnie=(x0, zero,  zero, beta1, w0, zero)
+            x0plustheta2 = x0 + theta2
+			condgammatnie=(x0plustheta2, zero,  zero, beta1, w0, zero)
 			w1=beta1*a0
 			condgammapnie=(x1, zero,  zero, beta1, w1, zero) 
 		
@@ -3510,4 +3518,7 @@ void paramed(
 
 end
 
-mata: mata mosave paramed(), dir(PLUS) replace
+
+*mata: mata mosave paramed() // run this line to compile .mo file in working directory
+*mata: mata mosave paramed(), dir(PLUS) replace // run this line to compile in ado "plus" directory
+

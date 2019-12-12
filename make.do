@@ -3,13 +3,16 @@
 // DO NOT FORGET to update the version of the package, if changed!
 // for more information visit http://github.com/haghish/github
 
-make paramed,  toc pkg  version(1.5)                                         ///
+*Creating toc and pkg files
+make paramed,  toc pkg  version(2.0.0)                                       ///
      license("MIT")                                                          ///
-     author("Hanhua Liu, Richard Emsley")                                    ///
+     author("Gordon Forbes", "Hanhua Liu, Richard Emsley")                   ///
      affiliation("Kings College London")                                     ///
-     email("richard.emsley@kcl.ac.uk")                                       ///
-     url("")                                                                 ///
+     email("gordon.forbes@kcl.ac.uk")                                        ///
+     url("https://github.com/GForb/paramed/")                                ///
      title("paramed")                                                        ///
      description("module to perform causal mediation analysis using parametric regression models") ///
      install("paramed.ado;paramed.mata;paramed.sthlp;paramedbs.ado")         ///
-     iancillary("paramed_example.dta")                                      
+     ancillary("paramed_example.dta;paramed.mo")  ///
+     replace
+

@@ -1,6 +1,9 @@
 *!TITLE: PARAMED - causal mediation analysis using parametric regression models	
 *!AUTHORS: Hanhua Liu and Richard Emsley, Centre for Biostatistics, The University of Manchester
 *!
+*!	verson 2.0.0 FG/RAE 12 Dec 2019
+*!		Added text output before fitting model for outcome and model for mediator
+*!				
 *!	verson 1.5 HL/RAE 24 April 2013
 *!		bug fix - stata's standard calculation of p and confidence interval based on e(b) and e(V)
 *!				  (e.g. at 95%, [b-1.96*se, b+1.96*se]) does not work for non-linear cases
@@ -42,7 +45,7 @@
 *!	version 0.3b HL/RAE 24 September 2011
 *!	
 *!	version 0.3a HL/RAE 17 September 2011 - mediation.ado
-
+cap prog drop paramedbs
 program define paramedbs, eclass
 	version 10.0	
 
@@ -77,6 +80,7 @@ program define paramedbs, eclass
 		local mreg : word `nmreg' of `mregtypes'
 	}
 	
+
 	//validate cvars and nc
 	local cvar `cvars'
 //	local ncvars = wordcount("`cvar'")
@@ -153,6 +157,13 @@ program define paramedbs, eclass
 		}
 	}
 	
+	*Setting text to display prior to results
+	local outcome_model_text _newline as text "Model for the outcome" 
+	local mediator_model_text  _newline(2) as text "Model for the mediator" 
+
+	di `outcome_model_text'
+
+
 		
 	
 	****************************************
@@ -572,7 +583,8 @@ program define paramedbs, eclass
 	matrix rownames `tempmat' = `newrownames'
 	local cspec "cspec(& b %12s | %10.0g & %10.0g & %6.3f & %10.0g & %10.0g &)"
 	local rowspec = substr("`rspec'", length("rspec(")+1, nrow+2)	//get rspec passed from mata, remove last row
-	matlist `tempmat', `cspec' rspec(`"`rowspec'"') underscore
+	
+
 //	mat list `tempmat', noheader format(%10.0g)	
 	
 		ereturn matrix effects = `tempmat'

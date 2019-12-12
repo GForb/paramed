@@ -27,9 +27,11 @@ yreg({it:string}) mreg({it:string}) [cvars({varlist}) {opt nointer:action} {opt 
 
 {phang}{opt a1(real)} - this specifies the alternative treatment (exposure) level.
 
+{phang} If {opt avar} is a binary variable {opt a1} and {opt a0} may be ommited. If {opt a1} and {opt a0} are not specified {opt a1} and {opt a0} default to the higher and lower values of {opt avar} respectively.
+
 {phang}{opt m(real)} - this specifies the level of mediator at which the controlled direct effect 
 is to be estimated.  If there is no treatment (exposure)-mediator interaction the controlled direct effect
-is the same at all levels of the mediator and so an arbitary value can be chosen.
+is the same at all levels of the mediator and this option may be ommited.
 
 {phang}{opt yreg(string)} - this specifies the form of regression model to be fitted for the outcome 
 variable. This can be either {it:linear}, {it:logistic}, {it:loglinear}, {it:Poisson} or {it:Negative binomial}.
@@ -77,16 +79,20 @@ effects are computed (the number of values must correspond to the number of cova
 case-control design, provided the outcome in the population is rare. If this option is omitted, the data 
 will not be treated as from a case-control design.
 
-{phang}{opt boot:strap} - this specifies whether a bootstrap procedure should be performed to compute bias-corrected 
-bootstrap confidence intervals. The bootstrap procedure will not be performed if this option is omitted.
+{phang}{opt boot:strap} - this specifies whether a bootstrap procedure should be performed to compute bias-corrected confidence intervals. The bootstrap procedure will not be performed if this option is omitted.
 
 {phang}{opt reps(integer 1000)} - this specifies the number of replications for bootstrap. The default is 1000.
+
+{phang}{opt interval(string)} - this specifies the type of bootstrap confidence interval to be calculated. 
+The default is the percentile bootstrap. Supported options are {it:bc} (for bias corrected) or {it:normal}.
 
 {phang}{opt level(cilevel)} - this specifies the confidence level for bootstrap. If this option is omitted, 
 the current default level of 95% will be used.
 
 {phang}{opt seed(passthru)} - this specifies the seed for bootstrap. If this option is omitted, a random 
 seed will be used and the results cannot be replicated. {p_end}
+
+{phang}{opt nodef:initions} - this option suppresses the definitions of causal effects given after the table of results.
 
 {title:Assumptions}
 
@@ -134,11 +140,18 @@ no interaction between treatment and mediator, bootstrap standard errors with 10
 {p2col 5 15 19 2: Matrices}{p_end}
 {synopt:{cmd:e(b)}}matrix containing direct, indirect and total effect estimates{p_end}
 {synopt:{cmd:e(V)}}matrix containing variance of the effect estimates{p_end}
+{synopt:{cmd:e(effects)}}matrix containing the results table for the estiamtes of causal effects. {p_end}
 
 
 {title:Authors}
 
-{pstd}Hanhua Liu, Richard Emsley and Graham Dunn{break}
+{pstd}Gordon Forbes and Richard Emsley{break}
+Department of Biostatistics & Health Informatics{break}
+Institute of Psychiatry, Psychology & Neuroscience{break}
+Kings College London{p_end}
+
+
+{pstd}Hanhua Liu and Graham Dunn{break}
 Centre for Biostatistics{break}
 Institute of Population Health{break}
 The University of Manchester{p_end}
@@ -147,14 +160,14 @@ The University of Manchester{p_end}
 Harvard School of Public Health{break}
 Harvard University{p_end}
 
-{phang}Email: richard.emsley@manchester.ac.uk or hanhua.liu@manchester.ac.uk
+{phang}Email: richard.emsley@kcl.ac.uk or gordon.forbes@kcl.ac.uk
 
 
 {title:Further reading}
 
 Emsley RA, Liu H, Dunn G, Valeri L, VanderWeele TJ. (2013). paramed: causal mediation analysis using parametric models. In preparation.
 
-Valeri L, VanderWeele TJ. (2013). Mediation Analysis Allowing for Exposure–Mediator Interactions and Causal Interpretation: 
+Valeri L, VanderWeele TJ. (2013). Mediation Analysis Allowing for Exposureâ€“Mediator Interactions and Causal Interpretation: 
 Theoretical Assumptions and Implementation With SAS and SPSS Macros. Psychological Methods. Advance online
 publication. doi: 10.1037/a0031034
 
@@ -170,6 +183,20 @@ and a UK Medical Research Council Career Development Award in Biostatistics (Gra
 The command is based on the MEDIATION macros in SAS and SPSS by Linda Valeri and Tyler VanderWeele.
 
 We are grateful to Tom Palmer and Ian White for the suggestions they have made to improve this command.
+
+
+{title:Version history}
+{pstd} Version 2.0.0 of paramed made available December 2019. The following changes have been made since version 1.5 (version 1.5 was released on SSC April 2013):{p_end}
+
+{phang} 1) Fixed bug where paramed gave incorrect estimates of the variance for the natural indirect effect when exposure is binary, there is an exposure-mediator interaction, and no covariates are specified. See issue 01 on paramed github for more details. {p_end}
+
+{phang} 2) Default bootsrap changed to percentile. BC bootstrap (which was previous default) can now be specified with an option. {p_end}
+
+{phang} 3) Definitions of the causal effects have been added to the output. {p_end}
+
+{phang} 4) Specifying levels of avar made optional when avar is binary. {p_end}
+
+{phang} 5) Specifying value of m for controlled direct effect made optional when no interaction is specified. {p_end}
 
 
 {title:Also see}
