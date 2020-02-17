@@ -1,14 +1,12 @@
-v 2.0.0
+v 2.0.1
 d 'PARAMED': paramed
 d 
 d module to perform causal mediation analysis using parametric regression models
 d 
-d Distribution-Date:   20191212
+d Distribution-Date:   20200217
 d License: MIT
 d 
 F paramed.ado
 F paramed.sthlp
-F paramed2.mata
 F paramedbs.ado
 f paramed_example.dta
-f paramed2.mo
