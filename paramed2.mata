@@ -3520,5 +3520,4 @@ void paramed2(
 end
 
 
-mata: mata mosave paramed2(), replace // run this line to compile .mo file in working directory
 
